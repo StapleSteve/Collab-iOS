@@ -58,6 +58,7 @@ class NameTableViewController: UIViewController, UITextFieldDelegate, UIGestureR
         }
         
         self.tableView.dataSource = self.dataSource
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,7 +84,17 @@ class NameTableViewController: UIViewController, UITextFieldDelegate, UIGestureR
     
     @IBAction func confirmButtonPressed(sender: UIButton) {
         let newFB = firebaseRef.childByAppendingPath(nameTextField.text)
-        newFB.setValue("")
+
+        print("Printing key! " + newFB.key)
+        
+        
+        newFB.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            if let val = snapshot.value as? String {
+            } else {
+                newFB.setValue("")
+            }
+        })
+
         dismissBlurView()
     }
     
@@ -105,12 +116,15 @@ class NameTableViewController: UIViewController, UITextFieldDelegate, UIGestureR
         }
     }
 
-    
+
+    // MARK: Tableview Datasource delegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("selected")
         self.name = (tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text)!
         self.performSegueWithIdentifier("writeSegue", sender: self)
     }
+    
+    
     
 
     
