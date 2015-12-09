@@ -13,6 +13,7 @@ class ViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var textView: UITextView!
+    @IBOutlet var backButton: UIButton!
     
     var root = Firebase(url:"https://collabios.firebaseio.com")
     var child: Firebase!
@@ -42,6 +43,14 @@ class ViewController: UIViewController, UITextViewDelegate {
     func textViewDidChange(textView: UITextView) {
         child.setValue(self.textView.text!)
     }
+    
+    // Dismiss view controller with back button
+    @IBAction func backButtonPressed(sender: UIButton) {
+        self.dismissViewControllerAnimated(true) { () -> Void in
+            
+        }
+    }
+    
     
     // Close the keyboard
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

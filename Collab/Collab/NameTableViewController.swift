@@ -10,11 +10,14 @@ import UIKit
 import Firebase
 import FirebaseUI
 
-class NameTableViewController: UIViewController, UITableViewDelegate {
+class NameTableViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizerDelegate,  UITableViewDelegate {
 
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var addButton: UIButton!
+    @IBOutlet var nameTextField: UITextField!
+    @IBOutlet var confirmButton: UIButton!
+    var blurView: UIVisualEffectView!
     
     let firebaseRef = Firebase(url:"https://collabios.firebaseio.com")
     var dataSource: FirebaseTableViewDataSource!
@@ -23,8 +26,28 @@ class NameTableViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // UI
+        nameTextField.hidden = true
+        nameTextField.alpha = 0
+        confirmButton.hidden = true
+        confirmButton.alpha = 0
+        confirmButton.layer.cornerRadius = 5
+        confirmButton.layer.borderColor = UIColor.whiteColor().CGColor
+        confirmButton.layer.borderWidth = 2
+        
+        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        blurView = UIVisualEffectView(effect: darkBlur)
+        blurView.frame = self.view.bounds
+        
+        let tap = UITapGestureRecognizer(target: self, action: Selector("handleTap:"))
+        tap.delegate = self
+        blurView.addGestureRecognizer(tap)
+        
+        // Delegates
+        self.nameTextField.delegate = self
         self.tableView.delegate = self
         
+        // Firebase data
         self.dataSource = FirebaseTableViewDataSource(ref: self.firebaseRef, cellReuseIdentifier: "nameCell", view: self.tableView)
         
         self.dataSource.populateCellWithBlock { (cell: UITableViewCell, obj: NSObject) -> Void in
@@ -44,10 +67,47 @@ class NameTableViewController: UIViewController, UITableViewDelegate {
     
     
     @IBAction func addButtonPressed(sender: UIButton) {
+        // Blur View
+        self.blurView.alpha = 0
+        self.nameTextField.hidden = false
+        self.confirmButton.hidden = false
         
+        self.view.insertSubview(blurView, belowSubview: nameTextField)
+        UIView.animateWithDuration(0.5) { () -> Void in
+            self.blurView.alpha = 1
+            self.nameTextField.alpha = 1
+            self.confirmButton.alpha = 1
+        }
     }
     
+    
+    @IBAction func confirmButtonPressed(sender: UIButton) {
+        let newFB = firebaseRef.childByAppendingPath(nameTextField.text)
+        newFB.setValue("")
+        dismissBlurView()
+    }
+    
+    
+    func handleTap(sender: UITapGestureRecognizer? = nil) {
+        dismissBlurView()
+    }
+    
+    func dismissBlurView() {
+        self.view.insertSubview(blurView, belowSubview: nameTextField)
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            self.blurView.alpha = 0
+            self.nameTextField.alpha = 0
+            self.confirmButton.alpha = 0
+            }) { (complete) -> Void in
+                self.nameTextField.hidden = true
+                self.confirmButton.hidden = true
+                self.blurView.removeFromSuperview()
+        }
+    }
+
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("selected")
         self.name = (tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text)!
         self.performSegueWithIdentifier("writeSegue", sender: self)
     }
@@ -62,6 +122,10 @@ class NameTableViewController: UIViewController, UITableViewDelegate {
         let newFB = firebaseRef.childByAppendingPath(self.name)
         destVC.child = newFB
     }
-
+    
+    // Close the keyboard
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 
 }

@@ -49,20 +49,53 @@
                                     <action selector="addButtonPressed:" destination="7OI-aJ-Nzb" eventType="touchUpInside" id="M4F-Sh-ZDb"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kHW-gx-e3Q">
+                                <rect key="frame" x="70" y="160" width="460" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eC6-iK-kLl">
+                                <rect key="frame" x="70" y="200" width="460" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Go"/>
+                                <connections>
+                                    <action selector="confirmButtonPressed:" destination="7OI-aJ-Nzb" eventType="touchUpInside" id="0NW-O4-kN5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.13725490196078433" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="kHW-gx-e3Q" firstAttribute="top" secondItem="N32-E2-m2T" secondAttribute="bottom" constant="64" id="5uS-ui-iRt"/>
                             <constraint firstItem="Hes-KW-ipl" firstAttribute="top" secondItem="N32-E2-m2T" secondAttribute="bottom" constant="47" id="9VM-zz-WfN"/>
+                            <constraint firstItem="eC6-iK-kLl" firstAttribute="top" secondItem="N32-E2-m2T" secondAttribute="bottom" constant="140" id="9pL-MS-ZUh"/>
                             <constraint firstItem="N32-E2-m2T" firstAttribute="centerX" secondItem="NVG-Fh-FGX" secondAttribute="centerX" id="BeU-sJ-A2c"/>
+                            <constraint firstItem="eC6-iK-kLl" firstAttribute="leading" secondItem="NVG-Fh-FGX" secondAttribute="leadingMargin" constant="50" id="Lx6-HI-CKJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kHW-gx-e3Q" secondAttribute="trailing" constant="50" id="Pmd-0Z-kCK"/>
                             <constraint firstItem="Hes-KW-ipl" firstAttribute="leading" secondItem="NVG-Fh-FGX" secondAttribute="leadingMargin" constant="-20" id="TP9-8D-z54"/>
+                            <constraint firstItem="kHW-gx-e3Q" firstAttribute="centerX" secondItem="NVG-Fh-FGX" secondAttribute="centerX" id="TTi-ej-HF2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eC6-iK-kLl" secondAttribute="trailing" constant="50" id="WwD-Ds-43p"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Hes-KW-ipl" secondAttribute="trailing" constant="-20" id="a3p-Km-TSt"/>
+                            <constraint firstItem="kHW-gx-e3Q" firstAttribute="leading" secondItem="NVG-Fh-FGX" secondAttribute="leadingMargin" constant="50" id="ciV-wr-9Cf"/>
                             <constraint firstItem="WRL-Lx-XgF" firstAttribute="top" secondItem="Hes-KW-ipl" secondAttribute="bottom" id="mrY-32-3ZI"/>
+                            <constraint firstItem="eC6-iK-kLl" firstAttribute="top" secondItem="kHW-gx-e3Q" secondAttribute="bottom" constant="10" id="ofJ-U5-fqa"/>
+                            <constraint firstItem="kHW-gx-e3Q" firstAttribute="top" secondItem="3TN-F4-GRc" secondAttribute="bottom" constant="140" id="pdl-ve-RRG"/>
                             <constraint firstItem="N32-E2-m2T" firstAttribute="top" secondItem="3TN-F4-GRc" secondAttribute="bottom" constant="21" id="xI3-A7-iYo"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="TTi-ej-HF2"/>
+                                <exclude reference="pdl-ve-RRG"/>
+                                <exclude reference="9pL-MS-ZUh"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="addButton" destination="z7B-Z0-p0A" id="mei-5v-WBQ"/>
+                        <outlet property="confirmButton" destination="eC6-iK-kLl" id="6ST-dD-wOJ"/>
+                        <outlet property="nameTextField" destination="kHW-gx-e3Q" id="du0-Dm-pgK"/>
                         <outlet property="tableView" destination="Hes-KW-ipl" id="nvG-vK-NgE"/>
                         <outlet property="titleLabel" destination="N32-E2-m2T" id="dAl-VS-jZD"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="writeSegue" id="RkD-5K-Qii"/>
@@ -100,6 +133,14 @@
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRP-7p-vA6">
+                                <rect key="frame" x="20" y="20" width="34" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fhk-nD-iIS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.1803921568627451" green="0.1803921568627451" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
@@ -113,6 +154,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="wRP-7p-vA6" id="a2r-k4-21Z"/>
                         <outlet property="textView" destination="Jyi-KH-DMx" id="qmA-rF-LgL"/>
                         <outlet property="titleLabel" destination="Goj-Ol-aLz" id="Jd9-42-bsO"/>
                     </connections>
