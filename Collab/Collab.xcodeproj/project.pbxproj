@@ -14,6 +14,7 @@
 		9F6B607C1C17E260003766A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F6B607A1C17E260003766A8 /* LaunchScreen.storyboard */; };
 		9F6B60871C17E260003766A8 /* CollabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6B60861C17E260003766A8 /* CollabTests.swift */; };
 		9F6B60921C17E260003766A8 /* CollabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6B60911C17E260003766A8 /* CollabUITests.swift */; };
+		9FB1481E1C1803A5007A2F36 /* NameTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1481D1C1803A5007A2F36 /* NameTableViewController.swift */; };
 		A2451E6006C97EA1FE2A1C43 /* Pods_Collab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C304249AD64C99511C98215 /* Pods_Collab.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		9F6B608D1C17E260003766A8 /* CollabUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CollabUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F6B60911C17E260003766A8 /* CollabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollabUITests.swift; sourceTree = "<group>"; };
 		9F6B60931C17E260003766A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9FB1481D1C1803A5007A2F36 /* NameTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameTableViewController.swift; sourceTree = "<group>"; };
 		DF4710B3D24B51F20E63977F /* Pods-Collab.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Collab.release.xcconfig"; path = "Pods/Target Support Files/Pods-Collab/Pods-Collab.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				9F6B60711C17E260003766A8 /* AppDelegate.swift */,
+				9FB1481D1C1803A5007A2F36 /* NameTableViewController.swift */,
 				9F6B60731C17E260003766A8 /* ViewController.swift */,
 				9F6B60751C17E260003766A8 /* Main.storyboard */,
 				9F6B60781C17E260003766A8 /* Assets.xcassets */,
@@ -333,6 +336,7 @@
 			files = (
 				9F6B60741C17E260003766A8 /* ViewController.swift in Sources */,
 				9F6B60721C17E260003766A8 /* AppDelegate.swift in Sources */,
+				9FB1481E1C1803A5007A2F36 /* NameTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,15 +14,18 @@ class ViewController: UIViewController, UITextViewDelegate {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var textView: UITextView!
     
-    var myRootRef = Firebase(url:"https://collabios.firebaseio.com")
+    var root = Firebase(url:"https://collabios.firebaseio.com")
+    var child: Firebase!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        // Delegate setup
         self.textView.delegate = self
         
-        myRootRef.observeEventType(.Value, withBlock: { snapshot in
-            self.textView.text = snapshot.value as! String
+        // Update textview from firebase
+        child.observeEventType(.Value, withBlock: { snapshot in
+            self.textView.text = snapshot.value as? String
         })
     }
 
@@ -35,11 +38,12 @@ class ViewController: UIViewController, UITextViewDelegate {
         return true
     }
 
+    // Update firebase as soon as textView text changes
     func textViewDidChange(textView: UITextView) {
-        print("We are changing")
-        myRootRef.setValue(self.textView.text!)
+        child.setValue(self.textView.text!)
     }
     
+    // Close the keyboard
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
